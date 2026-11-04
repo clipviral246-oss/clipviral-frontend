@@ -1,0 +1,149 @@
+{
+  "common": {
+    "brand": "ClipViral AI",
+    "tagline": "Virale Videos in Sekunden durch KI-Schnitt & Untertitel",
+    "dashboard": "Dashboard",
+    "editor": "Schnitt-Studio",
+    "pricing": "Preise",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "getStarted": "Kostenlos starten",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "loading": "Wird geladen...",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolgreich",
+    "language": "Sprache"
+  },
+  "nav": {
+    "upload": "Upload",
+    "timeline": "Timeline",
+    "pricing": "Preise",
+    "docs": "Dokumentation",
+    "account": "Mein Konto"
+  },
+  "upload": {
+    "title": "Video-Upload & Batch-Import",
+    "subtitle": "Lade bis zu 20+ Clips gleichzeitig hoch. ClipViral AI analysiert Szenen, Sprache und Highlights automatisch.",
+    "dropzoneTitle": "Video-Clips hier hineinziehen oder klicken",
+    "dropzoneHint": "Unterstützt bis zu 20+ Clips gleichzeitig (MP4, MOV, WEBM, MKV bis je 2 GB)",
+    "browseFiles": "Dateien auswählen",
+    "maxFilesWarning": "Du kannst bis zu 25 Clips gleichzeitig in ein Projekt laden.",
+    "clipsCount": "Ausgewählte Clips",
+    "uploadAll": "Alle {count} Clips hochladen",
+    "clearAll": "Warteschlange leeren",
+    "openInTimeline": "In Timeline bearbeiten",
+    "status": {
+      "ready": "Bereit zum Upload",
+      "uploading": "Wird hochgeladen...",
+      "processing": "KI-Verarbeitung läuft...",
+      "completed": "Fertig zur Bearbeitung",
+      "error": "Fehler beim Upload"
+    },
+    "card": {
+      "duration": "Dauer",
+      "size": "Größe",
+      "remove": "Entfernen",
+      "retry": "Wiederholen"
+    },
+    "emptyState": "Noch keine Clips hinzugefügt. Ziehe Videos hierher, um dein Projekt zu starten."
+  },
+  "timeline": {
+    "title": "KI Video Timeline Editor",
+    "subtitle": "Schneide manuell, entferne Sprechpausen und nutze präzise Undo/Redo Steuerung.",
+    "play": "Abspielen",
+    "pause": "Pausieren",
+    "split": "Clip teilen",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "deleteSelected": "Clip löschen",
+    "trimStart": "Anfang trimmen",
+    "trimEnd": "Ende trimmen",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "exportVideo": "Video exportieren",
+    "shortcuts": "Tastaturkürzel: Leertaste (Play/Pause), S (Teilen), Strg+Z (Rückgängig)",
+    "trackVideo": "Video-Spur",
+    "trackAudio": "KI Audio & Untertitel",
+    "selectedClip": "Ausgewählter Clip",
+    "duration": "Gesamtlänge",
+    "currentTime": "Aktuelle Zeit",
+    "cutsCount": "Schnitte",
+    "resetTimeline": "Timeline zurücksetzen"
+  },
+  "pricing": {
+    "badge": "Flexible Tarife für Creator",
+    "title": "Einfache, transparente Preise",
+    "subtitle": "Wähle das passende Paket für virale Kurzvideos auf TikTok, Reels und YouTube Shorts.",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich (-20% Rabatt)",
+    "monthUnit": "/ Monat",
+    "yearUnit": "/ Monat (jährlich abgerechnet)",
+    "choosePlan": "Plan auswählen",
+    "currentPlan": "Aktueller Plan",
+    "guarantee": "14 Tage Geld-zurück-Garantie • Jederzeit kündbar",
+    "starter": {
+      "name": "Starter",
+      "tagline": "Perfekt für Einsteiger und Gelegenheits-Creator",
+      "priceMonthly": "19 €",
+      "priceYearly": "15 €",
+      "features": [
+        "Bis zu 30 exportierte Videos pro Monat",
+        "Upload von bis zu 10 Clips pro Projekt",
+        "Automatische Sprechpausen-Entfernung",
+        "720p & 1080p Full-HD Export",
+        "Deutsche & Englische Untertitel-Generierung",
+        "Standard Cloud-Rendering"
+      ]
+    },
+    "creator": {
+      "popularBadge": "Beliebteste Wahl",
+      "name": "Creator",
+      "tagline": "Für aktive Content-Creator & Social Media Manager",
+      "priceMonthly": "49 €",
+      "priceYearly": "39 €",
+      "features": [
+        "Unbegrenzte Video-Exporte",
+        "Upload von bis zu 25+ Clips gleichzeitig",
+        "KI Auto-B-Roll & Virale Highlight-Erkennung",
+        "4K Ultra-HD Export ohne Wasserzeichen",
+        "Automatische dynamische Untertitel & Emojis",
+        "Priorisierte FFmpeg-Rendering-Warteschlange",
+        "Team-Freigabe für bis zu 3 Mitglieder"
+      ]
+    },
+    "pro": {
+      "name": "Pro / Agency",
+      "tagline": "Maximale Power für Agenturen und Medienhäuser",
+      "priceMonthly": "99 €",
+      "priceYearly": "79 €",
+      "features": [
+        "Alles aus Creator inklusive",
+        "Unbegrenzte Batch-Verarbeitung (50+ Clips)",
+        "Eigene Marken-Templates & Schriften",
+        "Stripe-Rechnungsstellung mit USt.-ID",
+        "Dedizierte Cloud-GPU Renderknoten",
+        "Vollständiger API-Zugriff & Webhooks",
+        "24/7 Prioritäts-Support via Slack & WhatsApp"
+      ]
+    }
+  },
+  "auth": {
+    "title": "Willkommen bei ClipViral AI",
+    "subtitle": "Erstelle virale Videos 10x schneller mit KI-Unterstützung.",
+    "googleButton": "Mit Google fortfahren",
+    "or": "Oder per E-Mail",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "name@beispiel.de",
+    "sendMagicLink": "Magic Link anfordern",
+    "guestDemo": "Als Gast im Demo-Modus fortfahren",
+    "terms": "Mit der Anmeldung akzeptierst du unsere AGB und Datenschutzrichtlinien."
+  },
+  "api": {
+    "uploadSuccess": "Upload erfolgreich initialisiert",
+    "jobStarted": "Hintergrund-Job für FFmpeg und Transkription gestartet",
+    "stripeRedirect": "Weiterleitung zum sicheren Stripe Checkout..."
+  }
+}
+

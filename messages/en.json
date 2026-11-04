@@ -1,0 +1,149 @@
+{
+  "common": {
+    "brand": "ClipViral AI",
+    "tagline": "Turn Raw Footage into Viral Videos with AI Editing & Captions",
+    "dashboard": "Dashboard",
+    "editor": "Timeline Studio",
+    "pricing": "Pricing",
+    "login": "Sign In",
+    "logout": "Sign Out",
+    "getStarted": "Get Started Free",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "language": "Language"
+  },
+  "nav": {
+    "upload": "Upload",
+    "timeline": "Timeline",
+    "pricing": "Pricing",
+    "docs": "Docs",
+    "account": "My Account"
+  },
+  "upload": {
+    "title": "Video Upload & Batch Import",
+    "subtitle": "Upload up to 20+ clips simultaneously. ClipViral AI automatically indexes scenes, speech, and viral highlights.",
+    "dropzoneTitle": "Drag & drop video clips here, or browse",
+    "dropzoneHint": "Supports 20+ clips in a single batch (MP4, MOV, WEBM, MKV up to 2GB each)",
+    "browseFiles": "Browse files",
+    "maxFilesWarning": "You can add up to 25 clips simultaneously into a project.",
+    "clipsCount": "Selected Clips",
+    "uploadAll": "Upload All {count} Clips",
+    "clearAll": "Clear Queue",
+    "openInTimeline": "Open in Timeline",
+    "status": {
+      "ready": "Ready to upload",
+      "uploading": "Uploading...",
+      "processing": "AI Processing queue...",
+      "completed": "Ready for editing",
+      "error": "Upload failed"
+    },
+    "card": {
+      "duration": "Duration",
+      "size": "Size",
+      "remove": "Remove",
+      "retry": "Retry"
+    },
+    "emptyState": "No clips added yet. Drop video files here to get started."
+  },
+  "timeline": {
+    "title": "AI Video Timeline Editor",
+    "subtitle": "Cut manually, eliminate silence gaps, and preview with full undo/redo history.",
+    "play": "Play",
+    "pause": "Pause",
+    "split": "Split Clip",
+    "undo": "Undo",
+    "redo": "Redo",
+    "deleteSelected": "Delete Clip",
+    "trimStart": "Trim Start",
+    "trimEnd": "Trim End",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "exportVideo": "Export Video",
+    "shortcuts": "Keyboard shortcuts: Space (Play/Pause), S (Split), Ctrl+Z (Undo)",
+    "trackVideo": "Video Track",
+    "trackAudio": "AI Audio & Subtitles",
+    "selectedClip": "Selected Clip",
+    "duration": "Total Duration",
+    "currentTime": "Current Time",
+    "cutsCount": "Cuts",
+    "resetTimeline": "Reset Timeline"
+  },
+  "pricing": {
+    "badge": "Flexible Creator Plans",
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the right tier to automate high-performing TikToks, Reels, and YouTube Shorts.",
+    "monthly": "Monthly",
+    "yearly": "Yearly (Save 20%)",
+    "monthUnit": "/ month",
+    "yearUnit": "/ month (billed annually)",
+    "choosePlan": "Choose Plan",
+    "currentPlan": "Current Plan",
+    "guarantee": "14-day money-back guarantee • Cancel anytime",
+    "starter": {
+      "name": "Starter",
+      "tagline": "Perfect for hobbyists and individual creators",
+      "priceMonthly": "$19",
+      "priceYearly": "$15",
+      "features": [
+        "Up to 30 exported videos per month",
+        "Upload up to 10 clips per project",
+        "Automatic silence removal & jump cuts",
+        "720p & 1080p Full-HD rendering",
+        "German & English subtitle generation",
+        "Standard cloud processing speed"
+      ]
+    },
+    "creator": {
+      "popularBadge": "Most Popular",
+      "name": "Creator",
+      "tagline": "For growing content creators and social managers",
+      "priceMonthly": "$49",
+      "priceYearly": "$39",
+      "features": [
+        "Unlimited video exports",
+        "Upload up to 25+ clips simultaneously",
+        "AI Auto-B-Roll & Viral Highlight detection",
+        "4K Ultra-HD export with no watermark",
+        "Dynamic animated captions & emojis",
+        "Priority FFmpeg render queue",
+        "Team sharing for up to 3 collaborators"
+      ]
+    },
+    "pro": {
+      "name": "Pro / Agency",
+      "tagline": "Maximum throughput for agencies and production teams",
+      "priceMonthly": "$99",
+      "priceYearly": "$79",
+      "features": [
+        "Everything in Creator included",
+        "Unlimited batch uploads (50+ clips)",
+        "Custom brand fonts & watermark templates",
+        "Stripe invoicing with tax ID compliance",
+        "Dedicated cloud GPU render nodes",
+        "Full API access & webhook triggers",
+        "24/7 priority support via Slack & WhatsApp"
+      ]
+    }
+  },
+  "auth": {
+    "title": "Welcome to ClipViral AI",
+    "subtitle": "Create viral short-form videos 10x faster with AI automation.",
+    "googleButton": "Continue with Google",
+    "or": "Or with Email",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "name@example.com",
+    "sendMagicLink": "Send Magic Link",
+    "guestDemo": "Continue as Guest in Demo Mode",
+    "terms": "By signing up you agree to our Terms of Service and Privacy Policy."
+  },
+  "api": {
+    "uploadSuccess": "Upload successfully initialized",
+    "jobStarted": "Background job queue started for FFmpeg & transcription",
+    "stripeRedirect": "Redirecting to secure Stripe Checkout..."
+  }
+}
+
