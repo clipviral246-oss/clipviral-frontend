@@ -306,8 +306,8 @@ export function FileUploadZone({ onProceedToTimeline }: FileUploadZoneProps = {}
       const signatureData = {
         signature: data.signature,
         timestamp: data.timestamp,
-        api_key: data.api_key || '886617579976247',
-        cloud_name: data.cloud_name || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'lgxkjpat',
+        api_key: data.api_key || '',
+        cloud_name: data.cloud_name || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || '',
       };
 
       setUploadMessage(

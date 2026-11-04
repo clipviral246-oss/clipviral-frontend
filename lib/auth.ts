@@ -9,10 +9,17 @@ import prisma from '@/lib/prisma';
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    // Google OAuth Provider
+    // Google OAuth Provider (Primary Authentication Method for Real Users)
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || 'mock-google-client-id',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'mock-google-client-secret',
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+      authorization: {
+        params: {
+          prompt: 'select_account',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
       allowDangerousEmailAccountLinking: true,
     }),
     // Instagram Graph API Provider
@@ -68,12 +75,12 @@ export const authOptions: NextAuthOptions = {
       },
       from: process.env.EMAIL_FROM || 'ClipViral AI <noreply@clipviral.ai>',
     }),
-    // Credentials / Instant Creator Login Provider
+    // Credentials / Instant Creator Login Provider (Restricted in production)
     CredentialsProvider({
       id: 'credentials',
       name: 'Email & Passwordless Credentials',
       credentials: {
-        email: { label: 'Email', type: 'email', placeholder: 'creator@clipviral.ai' },
+        email: { label: 'Email', type: 'email', placeholder: 'creator_demo@clipviral.ai' },
         name: { label: 'Name', type: 'text', placeholder: 'Viral Creator' },
       },
       async authorize(credentials) {
@@ -82,7 +89,15 @@ export const authOptions: NextAuthOptions = {
         }
 
         const email = credentials.email.toLowerCase().trim();
-        const name = credentials.name || email.split('@')[0];
+        const isProduction = process.env.NODE_ENV === 'production';
+
+        // Security Restriction: In production, strictly restrict passwordless credential login to the demo account
+        if (isProduction && email !== 'creator_demo@clipviral.ai') {
+          console.warn(`[Security Alert] Blocked unauthorized credentials login attempt in production for: ${email}`);
+          throw new Error('In production, passwordless credentials login is disabled. Please sign in with Google.');
+        }
+
+        const name = credentials.name || (email === 'creator_demo@clipviral.ai' ? 'Viral Demo Creator' : email.split('@')[0]);
 
         try {
           const user = await prisma.user.upsert({
