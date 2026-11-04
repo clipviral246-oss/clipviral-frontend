@@ -3,17 +3,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { signIn } from 'next-auth/react';
-import { 
-  Play, 
-  Pause, 
-  Scissors, 
-  Undo2, 
-  Redo2, 
-  Trash2, 
-  RotateCcw, 
-  Download, 
-  UploadCloud, 
-  Volume2, 
+import {
+  Play,
+  Pause,
+  Scissors,
+  Undo2,
+  Redo2,
+  Trash2,
+  RotateCcw,
+  Download,
+  UploadCloud,
+  Volume2,
   Sparkles,
   SlidersHorizontal,
   ZoomIn,
@@ -715,11 +715,10 @@ export function VideoTimelineEditor({ onOpenUpload }: VideoTimelineEditorProps =
                       setCurrentTime(clip.start);
                     }}
                     style={{ width: `${widthPercent}%` }}
-                    className={`relative h-full rounded-lg border-2 p-1.5 flex flex-col justify-between transition-all group overflow-hidden ${
-                      isSelected
-                        ? 'border-cyan-400 bg-gradient-to-r ' + clip.color + ' shadow-lg shadow-cyan-500/20'
-                        : 'border-zinc-800 bg-zinc-800/90 hover:border-zinc-700'
-                    }`}
+                    className={`relative h-full rounded-lg border-2 p-1.5 flex flex-col justify-between transition-all group overflow-hidden ${isSelected
+                      ? 'border-cyan-400 bg-gradient-to-r ' + clip.color + ' shadow-lg shadow-cyan-500/20'
+                      : 'border-zinc-800 bg-zinc-800/90 hover:border-zinc-700'
+                      }`}
                   >
                     <div className="flex items-center justify-between text-[10px] text-white font-medium z-10 truncate">
                       <span className="truncate">{clip.name}</span>
@@ -797,11 +796,10 @@ export function VideoTimelineEditor({ onOpenUpload }: VideoTimelineEditorProps =
                   setPublishResult(null);
                   setPublishError(null);
                 }}
-                className={`relative flex items-center justify-between p-3.5 rounded-2xl border transition-all ${
-                  selectedPlatform === 'tiktok'
-                    ? 'border-cyan-400 bg-cyan-950/30 shadow-lg shadow-cyan-500/10'
-                    : 'border-zinc-800 bg-zinc-900/60 hover:border-zinc-700'
-                }`}
+                className={`relative flex items-center justify-between p-3.5 rounded-2xl border transition-all ${selectedPlatform === 'tiktok'
+                  ? 'border-cyan-400 bg-cyan-950/30 shadow-lg shadow-cyan-500/10'
+                  : 'border-zinc-800 bg-zinc-900/60 hover:border-zinc-700'
+                  }`}
               >
                 <div className="flex items-center gap-2.5">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-black text-white font-black text-xs border border-zinc-700">
@@ -830,11 +828,10 @@ export function VideoTimelineEditor({ onOpenUpload }: VideoTimelineEditorProps =
                   setPublishResult(null);
                   setPublishError(null);
                 }}
-                className={`relative flex items-center justify-between p-3.5 rounded-2xl border transition-all ${
-                  selectedPlatform === 'instagram'
-                    ? 'border-pink-500 bg-pink-950/30 shadow-lg shadow-pink-500/10'
-                    : 'border-zinc-800 bg-zinc-900/60 hover:border-zinc-700'
-                }`}
+                className={`relative flex items-center justify-between p-3.5 rounded-2xl border transition-all ${selectedPlatform === 'instagram'
+                  ? 'border-pink-500 bg-pink-950/30 shadow-lg shadow-pink-500/10'
+                  : 'border-zinc-800 bg-zinc-900/60 hover:border-zinc-700'
+                  }`}
               >
                 <div className="flex items-center gap-2.5">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white font-bold text-xs">
