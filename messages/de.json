@@ -109,7 +109,7 @@
         "KI Auto-B-Roll & Virale Highlight-Erkennung",
         "4K Ultra-HD Export ohne Wasserzeichen",
         "Automatische dynamische Untertitel & Emojis",
-        "Priorisierte FFmpeg-Rendering-Warteschlange",
+        "Priorisierte Rendering-Warteschlange",
         "Team-Freigabe für bis zu 3 Mitglieder"
       ]
     },
@@ -122,7 +122,7 @@
         "Alles aus Creator inklusive",
         "Unbegrenzte Batch-Verarbeitung (50+ Clips)",
         "Eigene Marken-Templates & Schriften",
-        "Stripe-Rechnungsstellung mit USt.-ID",
+        "Automatische Rechnungsstellung mit USt.-ID",
         "Dedizierte Cloud-GPU Renderknoten",
         "Vollständiger API-Zugriff & Webhooks",
         "24/7 Prioritäts-Support via Slack & WhatsApp"
@@ -142,7 +142,7 @@
   },
   "api": {
     "uploadSuccess": "Upload erfolgreich initialisiert",
-    "jobStarted": "Hintergrund-Job für FFmpeg und Transkription gestartet",
-    "stripeRedirect": "Weiterleitung zum sicheren Stripe Checkout..."
+    "jobStarted": "Hintergrund-Verarbeitung für Audio & Video gestartet",
+    "stripeRedirect": "Weiterleitung zum sicheren Checkout..."
   }
 }

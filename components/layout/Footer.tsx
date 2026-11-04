@@ -21,7 +21,7 @@ export function Footer() {
               <span className="text-base font-bold text-white">ClipViral AI</span>
             </div>
             <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
-              {dict.common.tagline}. High-speed cloud rendering powered by FFmpeg & Whisper AI speech transcription.
+              {dict.common.tagline}. High-speed cloud rendering powered by advanced AI video processing.
             </p>
             <div className="flex items-center gap-4 text-xs text-zinc-500 pt-2">
               <span className="flex items-center gap-1">
@@ -31,7 +31,7 @@ export function Footer() {
                 <Cpu className="h-3.5 w-3.5 text-cyan-400" /> GPU Accelerated
               </span>
               <span className="flex items-center gap-1">
-                <Zap className="h-3.5 w-3.5 text-violet-400" /> Stripe Secure
+                <Zap className="h-3.5 w-3.5 text-violet-400" /> 256-Bit SSL Secure
               </span>
             </div>
           </div>
@@ -52,7 +52,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href={`/${locale}/pricing`} className="hover:text-white transition-colors">
-                  {dict.nav.pricing} (Stripe)
+                  {dict.nav.pricing}
                 </Link>
               </li>
             </ul>
@@ -60,13 +60,13 @@ export function Footer() {
 
           {/* Tech Stack & Stubs */}
           <div className="space-y-2">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-200">Tech Stack</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-200">Features</h4>
             <ul className="space-y-1.5 text-xs text-zinc-400">
-              <li>Next.js 16 (App Router)</li>
-              <li>Tailwind CSS v4 & Lucide</li>
-              <li>NextAuth (Google & Email)</li>
-              <li>FFmpeg & Whisper STT Queues</li>
-              <li>Stripe Webhooks & Presigned S3</li>
+              <li>Multi-Clip Batch Upload</li>
+              <li>AI Silence Trimming</li>
+              <li>Animated Auto-Captions</li>
+              <li>Instant 4K 60FPS Export</li>
+              <li>Cloud Sync & Storage</li>
             </ul>
           </div>
         </div>

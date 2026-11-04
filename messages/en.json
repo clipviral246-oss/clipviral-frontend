@@ -109,7 +109,7 @@
         "AI Auto-B-Roll & Viral Highlight detection",
         "4K Ultra-HD export with no watermark",
         "Dynamic animated captions & emojis",
-        "Priority FFmpeg render queue",
+        "Priority render queue",
         "Team sharing for up to 3 collaborators"
       ]
     },
@@ -122,7 +122,7 @@
         "Everything in Creator included",
         "Unlimited batch uploads (50+ clips)",
         "Custom brand fonts & watermark templates",
-        "Stripe invoicing with tax ID compliance",
+        "Automated invoicing with tax ID compliance",
         "Dedicated cloud GPU render nodes",
         "Full API access & webhook triggers",
         "24/7 priority support via Slack & WhatsApp"
@@ -142,8 +142,8 @@
   },
   "api": {
     "uploadSuccess": "Upload successfully initialized",
-    "jobStarted": "Background job queue started for FFmpeg & transcription",
-    "stripeRedirect": "Redirecting to secure Stripe Checkout..."
+    "jobStarted": "Background processing started for audio & video",
+    "stripeRedirect": "Redirecting to secure checkout..."
   }
 }
 

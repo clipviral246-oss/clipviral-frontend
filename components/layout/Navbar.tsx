@@ -19,6 +19,14 @@ export function Navbar() {
   const { data: session } = useSession();
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
+  // Conditional PRO badge: only display if authenticated user's database plan is 'PRO'
+  const isPro = Boolean(
+    session?.user &&
+      (((session.user as any)?.plan && String((session.user as any).plan).toUpperCase() === 'PRO') ||
+        ((session.user as any)?.subscriptionTier &&
+          String((session.user as any).subscriptionTier).toUpperCase() === 'PRO'))
+  );
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -32,9 +40,11 @@ export function Navbar() {
           <div className="flex flex-col">
             <span className="text-lg font-bold tracking-tight text-white flex items-center gap-1.5">
               ClipViral <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">AI</span>
-              <span className="rounded-full bg-violet-500/10 px-2 py-0.5 text-[10px] font-semibold text-violet-400 border border-violet-500/20">
-                PRO
-              </span>
+              {isPro && (
+                <span className="rounded-full bg-violet-500/10 px-2 py-0.5 text-[10px] font-semibold text-violet-400 border border-violet-500/20">
+                  PRO
+                </span>
+              )}
             </span>
           </div>
         </Link>
@@ -90,7 +100,8 @@ export function Navbar() {
                     alt={session.user.name || 'User'}
                     width={32}
                     height={32}
-                    className="h-8 w-8 rounded-full border border-violet-500/50"
+                    unoptimized
+                    className="h-8 w-8 rounded-full border border-violet-500/50 object-cover"
                   />
                 ) : (
                   <div className="h-8 w-8 rounded-full bg-violet-600/30 flex items-center justify-center text-xs font-semibold text-violet-300 border border-violet-500/40">

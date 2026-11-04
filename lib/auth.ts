@@ -1,15 +1,14 @@
 import type { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import InstagramProvider from 'next-auth/providers/instagram';
-import EmailProvider from 'next-auth/providers/email';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@/lib/prisma';
+import bcrypt from 'bcryptjs';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    // Google OAuth Provider (Primary Authentication Method for Real Users)
+    // Google OAuth Provider (Primary Authentication Method)
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
@@ -22,106 +21,49 @@ export const authOptions: NextAuthOptions = {
       },
       allowDangerousEmailAccountLinking: true,
     }),
-    // Instagram Graph API Provider
-    InstagramProvider({
-      clientId: process.env.INSTAGRAM_CLIENT_ID || 'mock-instagram-client-id',
-      clientSecret: process.env.INSTAGRAM_CLIENT_SECRET || 'mock-instagram-client-secret',
-      authorization: {
-        params: {
-          scope: 'user_profile,user_media,instagram_basic,instagram_content_publish',
-        },
-      },
-      allowDangerousEmailAccountLinking: true,
-    }),
-    // TikTok Content Posting API Provider
-    {
-      id: 'tiktok',
-      name: 'TikTok',
-      type: 'oauth',
-      version: '2.0',
-      authorization: {
-        url: 'https://www.tiktok.com/v2/auth/authorize/',
-        params: {
-          client_key: process.env.TIKTOK_CLIENT_KEY || 'mock-tiktok-key',
-          scope: 'user.info.basic,video.upload,video.publish',
-          response_type: 'code',
-        },
-      },
-      token: {
-        url: 'https://open.tiktokapis.com/v2/oauth/token/',
-      },
-      userinfo: 'https://open.tiktokapis.com/v2/user/info/',
-      profile(profile: any) {
-        return {
-          id: profile.data?.user?.open_id || profile.open_id || `tiktok_${Date.now()}`,
-          name: profile.data?.user?.display_name || 'TikTok Creator',
-          email: profile.data?.user?.email || null,
-          image: profile.data?.user?.avatar_url || null,
-        };
-      },
-      clientId: process.env.TIKTOK_CLIENT_KEY || 'mock-tiktok-key',
-      clientSecret: process.env.TIKTOK_CLIENT_SECRET || 'mock-tiktok-secret',
-      allowDangerousEmailAccountLinking: true,
-    },
-    // Passwordless Email / Magic Link Provider
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST || 'smtp.sendgrid.net',
-        port: Number(process.env.EMAIL_SERVER_PORT) || 587,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER || 'apikey',
-          pass: process.env.EMAIL_SERVER_PASSWORD || 'mock-sendgrid-key',
-        },
-      },
-      from: process.env.EMAIL_FROM || 'ClipViral AI <noreply@clipviral.ai>',
-    }),
-    // Credentials / Instant Creator Login Provider (Restricted in production)
+    // Strict Credentials Provider (Google & Email/Password Only)
     CredentialsProvider({
       id: 'credentials',
-      name: 'Email & Passwordless Credentials',
+      name: 'Email & Password',
       credentials: {
-        email: { label: 'Email', type: 'email', placeholder: 'creator_demo@clipviral.ai' },
-        name: { label: 'Name', type: 'text', placeholder: 'Viral Creator' },
+        email: { label: 'Email', type: 'email', placeholder: 'creator@example.com' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
         if (!credentials?.email) {
-          return null;
+          throw new Error('Please provide an email address.');
         }
 
         const email = credentials.email.toLowerCase().trim();
-        const isProduction = process.env.NODE_ENV === 'production';
 
-        // Security Restriction: In production, strictly restrict passwordless credential login to the demo account
-        if (isProduction && email !== 'creator_demo@clipviral.ai') {
-          console.warn(`[Security Alert] Blocked unauthorized credentials login attempt in production for: ${email}`);
-          throw new Error('In production, passwordless credentials login is disabled. Please sign in with Google.');
+        // Strict Validation: Email MUST exist in database
+        const user = await prisma.user.findUnique({
+          where: { email },
+        });
+
+        if (!user) {
+          throw new Error('No account found with this email. Please sign up first.');
         }
 
-        const name = credentials.name || (email === 'creator_demo@clipviral.ai' ? 'Viral Demo Creator' : email.split('@')[0]);
+        // If password is provided, strictly verify with bcrypt
+        const userPassword = (user as any).password;
+        if (credentials.password) {
+          if (!userPassword) {
+            throw new Error('This account was registered with Google. Please continue with Google.');
+          }
 
-        try {
-          const user = await prisma.user.upsert({
-            where: { email },
-            update: {
-              name,
-            },
-            create: {
-              email,
-              name,
-              image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-            },
-          });
-
-          return user;
-        } catch (dbError) {
-          console.warn('[Prisma Auth Fallback] Database offline or connecting:', dbError);
-          return {
-            id: `usr_${Date.now()}`,
-            name,
-            email,
-            image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-          };
+          const isPasswordValid = await bcrypt.compare(credentials.password, userPassword);
+          if (!isPasswordValid) {
+            throw new Error('Incorrect password. Please try again.');
+          }
+        } else {
+          // Password not provided
+          if (userPassword) {
+            throw new Error('Please enter your password to sign in.');
+          }
         }
+
+        return user;
       },
     }),
   ],
@@ -133,6 +75,17 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin (including Vercel deployment URLs)
+      try {
+        if (new URL(url).origin === baseUrl) return url;
+      } catch {
+        return baseUrl;
+      }
+      return baseUrl;
+    },
     async signIn({ user, account, profile }) {
       if (user.email) {
         try {
@@ -187,11 +140,14 @@ export const authOptions: NextAuthOptions = {
               }),
             ]);
 
-            (session.user as any).subscriptionTier = subscription?.tier || 'starter';
+            const userTier = subscription?.tier || 'starter';
+            (session.user as any).subscriptionTier = userTier;
+            (session.user as any).plan = userTier.toUpperCase();
             (session.user as any).connectedAccounts = accounts.map((a) => a.provider);
           }
         } catch (e) {
           (session.user as any).subscriptionTier = 'starter';
+          (session.user as any).plan = 'STARTER';
           (session.user as any).connectedAccounts = [];
         }
       }

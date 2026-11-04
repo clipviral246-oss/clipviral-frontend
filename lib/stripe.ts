@@ -79,7 +79,7 @@ export class StripeService {
       throw new Error(`Invalid subscription plan: ${params.planId}`);
     }
 
-    const appUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
+    const appUrl = process.env.NEXTAUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
     const lang = params.locale || 'de';
 
     const successUrl = `${appUrl}/${lang}/dashboard?checkout_status=success&session_id={CHECKOUT_SESSION_ID}&plan=${params.planId}`;
